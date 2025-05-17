@@ -1,6 +1,7 @@
 import sql from "../db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import validator from "validator";
 
 export const createUser = async (req, res) => {
   const { email, name, password } = req.body;
@@ -9,6 +10,9 @@ export const createUser = async (req, res) => {
     return res
       .status(400)
       .json({ message: "Email, name, and password are required" });
+  }
+  if (!validator.isEmail(email)) {
+    return res.status(400).json({ message: "Invalid email format." });
   }
 
   try {

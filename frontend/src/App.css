@@ -5,3 +5,60 @@
   text-align: center;
 }
 
+.App-header {
+  background-color: #222;
+  min-height: 5vh;
+  /* width: 1280px; */
+  display: flex;
+  margin: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+nav {
+  background-color: #222;
+  color: #fff;
+  width: 1280px;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  align-items: flex-end;  
+  padding: 0;
+  margin: 0;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  margin: 5px 10px;
+}
+
+nav a:hover {
+  color: #61dafb;
+}
+
+footer {
+  background-color: #222;
+  color: #fff;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
