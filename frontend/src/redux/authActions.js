@@ -36,8 +36,16 @@ export const performRegistration = createAsyncThunk(
     try {
       dispatch(setLoading(true));
       const data = await registerUserApi(userData);
+      const loginCredentials = {
+        email: userData.email,
+        password: userData.password,
+      };
+      const loginData = await loginUserApi(loginCredentials);
+      localStorage.setItem("token", loginData.token);
+      localStorage.setItem("user", JSON.stringify(loginData.user));
+      dispatch(loginSuccess({ user: loginData.user, token: loginData.token }));
       dispatch(setLoading(false));
-      return data;
+      return loginData;
     } catch (error) {
       dispatch(setLoading(false));
       return rejectWithValue(error.message || "Registration failed");

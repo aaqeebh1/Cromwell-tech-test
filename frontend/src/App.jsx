@@ -1,13 +1,28 @@
 import './App.css'
-import { Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import LoginPage from './pages/LoginPage'
 import RegistrationPage from './pages/RegistrationPage'
 import Homepage from './pages/HomePage'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadUser } from './redux/authActions'
+import { Navigate } from 'react-router-dom'
+
+
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useSelector((state) => state.auth)
+  return isAuthenticated ? children : <Navigate to="/login" />
+}
+
 
 
 
 function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(loadUser())
+  }, [dispatch])
 
   return (
     <>
@@ -33,15 +48,22 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegistrationPage />} />
-            <Route path="/landing" element={<LandingPage />} />
+            <Route
+              path="/landing"
+              element={
+                <ProtectedRoute>
+                  <LandingPage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </main>
         <footer>
-          <p>© 2025 Your Company</p>
+          <p>© 2025</p>
         </footer>
       </div>
     </>
-  )
+  );
 }
 
 export default App

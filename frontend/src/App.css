@@ -6,15 +6,15 @@
 }
 
 .App-header {
-  background-color: #222;
-  min-height: 5vh;
+  background-color: #1c355e;
+  /* min-height: 2vh; */
   /* width: 1280px; */
   display: flex;
   margin: 0;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(4px + 2vmin);
   color: white;
   position: absolute;
   top: 0;
@@ -23,9 +23,9 @@
 }
 
 nav {
-  background-color: #222;
+  background-color: #1c355e;
   color: #fff;
-  width: 1280px;
+  width: 100%;
   padding: 1rem 0;
   display: flex;
   flex-direction: row;
@@ -54,11 +54,16 @@ nav a:hover {
 }
 
 footer {
-  background-color: #222;
+  background-color: #1c355e;
   color: #fff;
+  width: 100%;
   padding: 1rem 0;
   margin-top: 2rem;
   text-align: center;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }

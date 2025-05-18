@@ -51,7 +51,7 @@
 .auth-form .submit-button {
   width: 100%;
   padding: 12px 15px;
-  background-color: #007bff;
+  background-color: #ff5100;
   color: white;
   border: none;
   border-radius: 5px;
@@ -63,7 +63,7 @@
 }
 
 .auth-form .submit-button:hover:not(:disabled) {
-  background-color: #0056b3;
+  background-color: #d32f2f;
 }
 
 .auth-form .submit-button:disabled {
@@ -82,12 +82,20 @@
   font-size: 14px;
 }
 
-.local-error-message {
-  /* Specific style if needed */
+.field-error-message {
+  color: #dc3545; /* Red for errors */
+  font-size: 0.875em;
+  margin-top: 5px;
 }
-.api-error-message {
-  /* Specific style if needed */
+
+.field-error-message p {
+  margin: 0.2em 0;
 }
+
+.auth-form .form-group input[aria-invalid="true"] {
+  border-color: #dc3545;
+}
+
 
 .form-switcher {
   margin-top: 25px;
