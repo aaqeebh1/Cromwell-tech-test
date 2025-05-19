@@ -1,4 +1,3 @@
-import React, { use } from "react";
 import AuthForm from "../components/AuthForm";
 import { useDispatch, useSelector } from "react-redux";
 import { setFormType } from "../redux/FormTypeSlice";

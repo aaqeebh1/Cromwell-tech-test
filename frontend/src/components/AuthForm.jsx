@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { performLogin, performRegistration } from "../redux/authActions";
 import "./AuthForm.css";
 import { Link } from "react-router-dom";
+import RegistrationStatusMessage from "./RegistrationStatusMessage";
+import { clearAuthError } from "../redux/authSlice";
 
 const isValidEmail = (email) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,6 +35,7 @@ const AuthForm = () => {
   const dispatch = useDispatch();
   const { currentForm, formConfig } = useSelector((state) => state.formType);
   const { isLoading, error } = useSelector((state) => state.auth);
+  const { registrationStatus } = useSelector((state) => state.auth);
 
   const currentConfig = formConfig[currentForm];
   const [formData, setFormData] = useState({});
@@ -48,6 +51,12 @@ const AuthForm = () => {
       setFieldErrors({});
     }
   }, [currentForm, currentConfig]);
+
+  const clearLoginError = () => {
+        if (error) {
+          dispatch(clearAuthError());
+        }
+      };
 
   const validateField = (name, value) => {
     let errorMessages = [];
@@ -156,6 +165,14 @@ const AuthForm = () => {
   return (
     <div className="auth-form-container">
       <h2>{currentConfig.title}</h2>
+      {registrationStatus && <RegistrationStatusMessage />}
+      {error && (
+        <p className="error-message api-error-message">
+          {typeof error === "string"
+            ? error
+            : error.message || "An API error occurred"}
+        </p>
+      )}
       <form onSubmit={handleSubmit} className="auth-form">
         {currentConfig.fields.map((field) => (
           <div className="form-group" key={field.name}>
@@ -190,13 +207,7 @@ const AuthForm = () => {
             )}
           </div>
         ))}
-        {error && (
-          <p className="error-message api-error-message">
-            {typeof error === "string"
-              ? error
-              : error.message || "An API error occurred"}
-          </p>
-        )}
+
         <button type="submit" className="submit-button" disabled={isLoading}>
           {isLoading ? "Processing..." : currentConfig.buttonText}
         </button>
@@ -205,7 +216,12 @@ const AuthForm = () => {
         {currentForm === "login" ? (
           <p>
             Don't have an account?{" "}
-            <Link to="/register" className="switch-button" disabled={isLoading}>
+            <Link
+              to="/register"
+              className="switch-button"
+              onClick={clearLoginError}
+              disabled={isLoading}
+            >
               Register
             </Link>
           </p>

@@ -8,6 +8,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadUser } from './redux/authActions'
 import { Navigate } from 'react-router-dom'
+import Nav from './components/Nav'
 
 
 const ProtectedRoute = ({ children }) => {
@@ -16,10 +17,9 @@ const ProtectedRoute = ({ children }) => {
 }
 
 
-
-
 function App() {
   const dispatch = useDispatch()
+  
   useEffect(() => {
     dispatch(loadUser())
   }, [dispatch])
@@ -28,19 +28,7 @@ function App() {
     <>
       <div className="App">
         <header className="App-header">
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/register">Register</Link>
-              </li>
-            </ul>
-          </nav>
+          <Nav />
         </header>
 
         <main>

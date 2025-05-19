@@ -11,6 +11,8 @@ import {
   loginFailure,
   logout as logoutAction,
   setLoading,
+  setRegistrationStatus,
+  clearRegistrationStatus,
 } from "./authSlice";
 
 export const performLogin = createAsyncThunk(
@@ -25,6 +27,7 @@ export const performLogin = createAsyncThunk(
       return data;
     } catch (error) {
       dispatch(setLoading(false));
+      dispatch(loginFailure({ error: error.message || "Login failed" }));
       return rejectWithValue(error.message || "Login failed");
     }
   }
@@ -35,7 +38,15 @@ export const performRegistration = createAsyncThunk(
   async (userData, { dispatch, rejectWithValue }) => {
     try {
       dispatch(setLoading(true));
+      dispatch(clearRegistrationStatus());
       const data = await registerUserApi(userData);
+      dispatch(
+        setRegistrationStatus({
+          status: "success",
+          message: "Registration successful! Logging you in...",
+        })
+      );
+      await new Promise((resolve) => setTimeout(resolve, 3000));
       const loginCredentials = {
         email: userData.email,
         password: userData.password,
@@ -45,10 +56,24 @@ export const performRegistration = createAsyncThunk(
       localStorage.setItem("user", JSON.stringify(loginData.user));
       dispatch(loginSuccess({ user: loginData.user, token: loginData.token }));
       dispatch(setLoading(false));
-      return loginData;
+      return { registrationData: data, loginData: loginData };
     } catch (error) {
       dispatch(setLoading(false));
-      return rejectWithValue(error.message || "Registration failed");
+      
+      let errorMessage = "Registration failed. Please try again.";
+      
+      if (error.status === 409 || error.response?.status === 409) {
+        errorMessage = "A user with this email already exists. Please use a different email.";
+      } else if (error.message) {
+        errorMessage = error.message;
+      }
+      
+      dispatch(setRegistrationStatus({
+        status: 'failed',
+        message: errorMessage,
+      }));
+      
+      return rejectWithValue(errorMessage);
     }
   }
 );
