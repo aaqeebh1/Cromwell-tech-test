@@ -87,7 +87,7 @@ export const loadUser = createAsyncThunk(
     if (token && storedUser?.id) {
       setAuthToken(token);
       try {
-        const userData = await fetchUserDataApi(storedUser.id);
+        const userData = await fetchUserDataApi(token);
         dispatch(loginSuccess({ user: userData, token: token }));
         return userData;
       } catch (error) {

@@ -1,0 +1,236 @@
+.homepage-container {
+  padding-top: 1rem; 
+  padding-bottom: 2rem;
+  text-align: left; 
+  font-family: Arial, sans-serif; 
+}
+
+.homepage-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2.5rem 1rem;
+  background-color: #f8f9fa; 
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+}
+
+.homepage-header h1 {
+  font-size: 2.8rem;
+  color: #1c355e; 
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.homepage-header .subtitle {
+  font-size: 1.25rem;
+  color: #555; 
+  max-width: 650px;
+  margin: 0 auto 1rem auto;
+  line-height: 1.6;
+}
+
+.features-section,
+.cta-section {
+  margin-bottom: 3rem;
+  padding: 0 1rem; 
+}
+
+.features-section h2,
+.cta-section h2 {
+  font-size: 2.2rem;
+  color: #333; 
+  text-align: center;
+  margin-bottom: 2.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.features-section h2::after,
+.cta-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: #ff5100; 
+  border-radius: 2px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.feature-card {
+  background-color: #fff;
+  padding: 2rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  font-size: 1.6rem;
+  color: #1c355e; 
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.feature-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.cta-section {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  background-color: #1c355e;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.cta-section h2 {
+  color: #fff; 
+}
+
+.cta-section h2::after {
+  background-color: #fff; 
+}
+
+.cta-section p {
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  background-color: #ff5100; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out, transform 0.1s ease;
+}
+
+.cta-button:hover {
+  background-color: #d32f2f; 
+  transform: translateY(-2px);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .homepage-header h1 {
+    font-size: 2.4rem;
+  }
+  .homepage-header .subtitle {
+    font-size: 1.15rem;
+  }
+  .features-section h2,
+  .cta-section h2 {
+    font-size: 2rem;
+  }
+  .feature-card h3 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage-header {
+    padding: 2rem 1rem;
+    margin-bottom: 2.5rem;
+  }
+  .homepage-header h1 {
+    font-size: 2rem;
+  }
+  .homepage-header .subtitle {
+    font-size: 1.05rem;
+  }
+  .features-section h2,
+  .cta-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .feature-card {
+    padding: 1.5rem;
+  }
+  .feature-card h3 {
+    font-size: 1.3rem;
+  }
+  .feature-card p {
+    font-size: 0.95rem;
+  }
+  .cta-section {
+    padding: 2.5rem 1rem;
+  }
+  .cta-section p {
+    font-size: 1.05rem;
+  }
+  .cta-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage-container {
+    padding-top: 0.5rem;
+  }
+  .homepage-header {
+    padding: 1.5rem 0.5rem;
+    margin-bottom: 2rem;
+  }
+  .homepage-header h1 {
+    font-size: 1.7rem;
+  }
+  .homepage-header .subtitle {
+    font-size: 0.95rem;
+  }
+  .features-section,
+  .cta-section {
+    padding: 0 0.5rem; 
+    margin-bottom: 2rem;
+  }
+  .features-section h2,
+  .cta-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .features-grid {
+    gap: 1rem;
+  }
+  .feature-card {
+    padding: 1.25rem;
+  }
+  .feature-card h3 {
+    font-size: 1.2rem;
+  }
+  .cta-section {
+    padding: 2rem 1rem;
+  }
+  .cta-section p {
+    font-size: 1rem;
+  }
+}

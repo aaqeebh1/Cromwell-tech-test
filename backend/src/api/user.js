@@ -62,11 +62,13 @@ export const loginUser = async (req, res) => {
       const user = users[0];
       const isMatch = await bcrypt.compare(password, user.password);
       if (isMatch) {
-        const payload = {user: {
+        const payload = {
+          user: {
             id: user.id,
             email: user.email,
-            name: user.name
-          }}
+            name: user.name,
+          },
+        };
         jwt.sign(
           payload,
           process.env.JWT_SECRET,
@@ -93,8 +95,8 @@ export const loginUser = async (req, res) => {
 };
 
 export const getUser = async (req, res) => {
-    const loggedInUserId = req.user.id;
-    
+  const loggedInUserId = req.user.id;
+
   try {
     const user = await sql`
             SELECT id, email, name, created_at FROM users WHERE id = ${loggedInUserId}`;

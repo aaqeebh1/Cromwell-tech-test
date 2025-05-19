@@ -162,6 +162,10 @@ const AuthForm = () => {
     return <div>Loading form configuration...</div>;
   }
 
+  const isAnyFieldEmpty = currentConfig.fields.some(
+    (field) => !formData[field.name] || formData[field.name].trim() === ""
+  );
+
   return (
     <div className="auth-form-container">
       <h2>{currentConfig.title}</h2>
@@ -208,8 +212,12 @@ const AuthForm = () => {
           </div>
         ))}
 
-        <button type="submit" className="submit-button" disabled={isLoading}>
-          {isLoading ? "Processing..." : currentConfig.buttonText}
+        <button type="submit" className="submit-button" disabled={isLoading || isAnyFieldEmpty}>
+          {isLoading
+            ? currentForm === "register"
+              ? "Registering..."
+              : "Logging in..."
+            : currentConfig.buttonText}
         </button>
       </form>
       <div className="form-switcher">
