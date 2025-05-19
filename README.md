@@ -64,8 +64,12 @@ The frontend is a React application built with Vite.
 
     The API endpoint is configured within the frontend code (API service file).
 
-
-
+4. **Running unit tests:**
+    ```bash
+    npm test
+    ```
+    
+    This will run the test for `email validation` and `password validation`.
 ## Notes
 
 - Ensure the backend is running before starting the frontend if the frontend makes API calls on load.
