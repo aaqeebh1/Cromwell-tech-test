@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 import RegistrationStatusMessage from "./RegistrationStatusMessage";
 import { clearAuthError } from "../redux/authSlice";
 
-const isValidEmail = (email) => {
+export const isValidEmail = (email) => {
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regex.test(email);
 };
 
-const getPasswordErrors = (password) => {
+export const getPasswordErrors = (password) => {
   const errors = [];
   if (password.length < 8) {
     errors.push("Password must be at least 8 characters long.");
